@@ -12,10 +12,12 @@ class ConfigLoader {
     }
 
     fun getProperty(key: String): String {
+        println("인수받음 $properties.getProperty(key)")
         return properties.getProperty(key)
     }
 
     fun pushProperty(key: String, value: String){
+        println("푸쉬됨 $properties.getProperty(key)")
         properties.setProperty(key, value)
     }
 }

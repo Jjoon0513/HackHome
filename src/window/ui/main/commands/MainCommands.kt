@@ -14,10 +14,20 @@ class MainCommands(
     private val changelang = ChangeLang(this)
 
 
-    fun reloadlang(){
-        val newconfigLoader = ConfigLoader()
-        language = LangLoader(newconfigLoader.getProperty("language"))
-        println("언어가 변경되었습니다: ${newconfigLoader.getProperty("language")}")
+    fun reloadlang() {
+        // 새로운 ConfigLoader 생성
+        val newConfigLoader = ConfigLoader()
+        val newLanguage = newConfigLoader.getProperty("language")
+
+        // ConfigLoader와 LangLoader가 값을 올바르게 반환하는지 확인
+        if (newLanguage.isNullOrEmpty()) {
+            println("ConfigLoader에서 언어 설정을 불러오지 못했습니다.")
+            return
+        }
+
+        // LangLoader 갱신
+        language = LangLoader(newLanguage)
+        println("언어가 변경되었습니다: $newLanguage")
     }
 
     fun commandinput(
