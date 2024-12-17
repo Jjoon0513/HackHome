@@ -16,9 +16,9 @@ class ChangeLang(
 
     fun changelang(inp: List<String>): String {
         return try {
-            cl.pushProperty("language", inp[1]) // 설정 저장
             langloader = LangLoader(inp[1]) // 새 언어 로드
-            mc.reloadlang() // MainCommands 동기화
+            cl.pushProperty("language", inp[1]) // 설정 저장
+            mc.reloadlang(inp[1]) // MainCommands 동기화
             langloader.getProperty("ChangeLang_finish")
         } catch (e: IndexOutOfBoundsException) {
             help()
